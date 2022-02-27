@@ -1,0 +1,207 @@
+/* Form design */
+#spotify-search-form {
+  position: relative;
+}
+
+#spotify-search-form #spotify-search-clear {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-top: 10px;
+  margin-left: 15px;
+}
+
+#spotify-search-form input[type=text] {
+  width: 100%;
+  height: 40px;
+  padding: 6px 45px;
+  font-size: 14px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  box-shadow: inset 0px 0px 0px 0px transparent;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+#spotify-search-form button[type=submit] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 40px;
+  background-color: transparent;
+  box-shadow: inset 0px 0px 0px 0px transparent;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+#spotify-search-form .ready {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#spotify-search-form .ready svg {
+  fill: #000000;
+}
+/* / Form design */
+
+/* Results design */
+#spotify-table-wrapper {
+  overflow: scroll;
+  background-color: #121212;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 20px;
+  width: 100%;
+  display: none;
+}
+
+#spotify-table-wrapper h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 25px;
+  line-height: 28px;
+  letter-spacing: -0.04em;
+  text-transform: none;
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+
+#spotify-table-wrapper ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#spotify-table-wrapper ul li ul {
+  margin-left: -20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#spotify-table-wrapper ul li ul.pagination {
+  padding:0;
+  justify-content: start;
+  margin-left: 0;
+}
+
+#spotify-table-wrapper ul li ul.pagination li {
+  display: flex;
+}
+
+#spotify-table-wrapper .spotify_search_previous_page, #spotify-table-wrapper .spotify_search_next_page {
+  color: #fff;
+  background-color: #050505;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#spotify-table-wrapper .spotify_search_previous_page:hover, #spotify-table-wrapper .spotify_search_next_page:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+#spotify-table-wrapper ul li ul li {
+  padding: 20px;
+}
+
+#spotify-table-wrapper ul li ul li .container {
+  background-color: #171717;
+  width: 200px;
+  height: 310px;
+  overflow: hidden;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+#spotify-table-wrapper ul li ul li .container .cover {
+  border-radius: 50%;
+  width: 170px;
+  height: 170px;
+  margin-bottom: 20px;
+  background-position: center;
+  background-size: cover;
+}
+
+#spotify-table-wrapper ul li ul li .container a, #spotify-table-wrapper ul li ul li .container a:hover {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  width: 160px; 
+  height: 25px;
+  font-size: 14px;
+  line-height: 14px;
+  white-space: nowrap;
+}
+
+#spotify-table-wrapper ul li ul li .container span {
+  display: block;
+  color: var(--text-subdued,#6a6a6a);
+  font-size: 12px;
+  line-height: 16px;
+  width: 160px; 
+  height: 1.2em; 
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; 
+}
+/* No results */
+#spotify-table-wrapper p {
+  color: #fff;
+}
+/* / Results design */
+
+/** Loading spinner */
+#spotify-search-form .lds-ring {
+    display: inline-block;
+    position: absolute;
+    left:0;
+    margin-left: 7px;
+    top:0;
+    margin-top: 10px;
+    width: 20px;
+    height: 20px;
+    display: none;
+}
+#spotify-search-form .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 4px solid #333;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #333 transparent transparent transparent;
+}
+#spotify-search-form .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+#spotify-search-form .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+#spotify-search-form .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+/** / Loading spinner */
