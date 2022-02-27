@@ -97,7 +97,9 @@ class KirilKirkov_SpotifyXhr
             // if token expired, new token is returned, update and call again
             if(property_exists($response, 'access_token')) {
                 update_option(SS_INPUTS_PREFIX.'spotify_search_token', $response->access_token);
-                $this->getResults($post);
+                // update token
+                $this->initSpotify();
+                return $this->getResults($post);
             }
 
             // set cache
