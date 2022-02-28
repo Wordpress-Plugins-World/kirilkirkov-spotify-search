@@ -15,8 +15,8 @@ window.onload = function() {
 
 // main search functionality
 function spotifySearch() {
-    let results_container = jQuery('#spotify-search-results');
-    let main_form = document.getElementById('spotify-search-form');
+    let results_container = jQuery('#kirilkirkov-spotify-search-container .spotify-search-results');
+    let main_form = document.getElementsByClassName('spotify-search-form')[0];
     
     /**
     * Execute a function given a delay time - helper debounce
@@ -26,15 +26,15 @@ function spotifySearch() {
     * @param {type} immediate
     * @returns {Function}
     */
-    var spotifySearchDebounce = function (func, wait, immediate) {
-        var timeout;
+    let spotifySearchDebounce = function (func, wait, immediate) {
+        let timeout;
         return function() {
-            var context = this, args = arguments;
-            var later = function() {
+            let context = this, args = arguments;
+            let later = function() {
                 timeout = null;
                 if (!immediate) func.apply(context, args);
             };
-            var callNow = immediate && !timeout;
+            let callNow = immediate && !timeout;
             clearTimeout(timeout);
             timeout = setTimeout(later, wait);
             if (callNow) func.apply(context, args);
@@ -42,7 +42,7 @@ function spotifySearch() {
     };
 
     // on change input - hide/show clear icon, onkey up debounce
-    jQuery("#spotify-search-form input[type=text]" ).on("keyup", spotifySearchDebounce(function() {
+    jQuery("#kirilkirkov-spotify-search-container .spotify-search-form input[type=text]" ).on("keyup", spotifySearchDebounce(function() {
         if(jQuery(this).val() == '') {
             spotifySearchClearResults();
         } else {
@@ -57,10 +57,10 @@ function spotifySearch() {
         ss_formProps.action = 'get_spotify_search_results'; // from backend
 
         results_container.empty();
-        jQuery('#spotify-search-form .lds-ring').show();
-        jQuery('#spotify-search-form .ready').hide();
-        jQuery('#spotify-search-form #spotify-search-clear').hide();
-        jQuery('#spotify-table-wrapper').hide();
+        jQuery('#kirilkirkov-spotify-search-container .spotify-search-form .lds-ring').show();
+        jQuery('#kirilkirkov-spotify-search-container .spotify-search-form .ready').hide();
+        jQuery('#kirilkirkov-spotify-search-container .spotify-search-form .spotify-search-clear').hide();
+        jQuery('#kirilkirkov-spotify-search-container .spotify-table-wrapper').hide();
 
         if(get_params !== null) {
             let query_string_to_obj = JSON.parse('{"' + decodeURI(get_params).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
@@ -102,9 +102,9 @@ function spotifySearch() {
                     results_container.html('<p>No results found</p>');
                 }
                 
-                jQuery('#spotify-search-form .lds-ring').hide();
-                jQuery('#spotify-search-form #spotify-search-clear').show();
-                jQuery('#spotify-table-wrapper').show();
+                jQuery('#kirilkirkov-spotify-search-container .spotify-search-form .lds-ring').hide();
+                jQuery('#kirilkirkov-spotify-search-container .spotify-search-form .spotify-search-clear').show();
+                jQuery('#kirilkirkov-spotify-search-container .spotify-table-wrapper').show();
             },
             error: function(response) {  
                 alert('There was error.')
@@ -112,18 +112,18 @@ function spotifySearch() {
         });
     }
 
-    jQuery('#spotify-search-form #spotify-search-clear').click(function() {
+    jQuery('#kirilkirkov-spotify-search-container .spotify-search-form .spotify-search-clear').click(function() {
         spotifySearchClearResults();
     });
 
     function spotifySearchClearResults() {
         results_container.empty();
-        jQuery('#spotify-search-form input[type=text]').val('');
-        jQuery('#spotify-search-form .lds-ring').hide();
-        jQuery('#spotify-search-form .ready').show();
-        jQuery('#spotify-search-form #spotify-search-clear').hide();
-        jQuery('#spotify-table-wrapper').hide();
-        jQuery('#spotify-search-form .ready').show();
+        jQuery('#kirilkirkov-spotify-search-container .spotify-search-form input[type=text]').val('');
+        jQuery('#kirilkirkov-spotify-search-container .spotify-search-form .lds-ring').hide();
+        jQuery('#kirilkirkov-spotify-search-container .spotify-search-form .ready').show();
+        jQuery('#kirilkirkov-spotify-search-container .spotify-search-form .spotify-search-clear').hide();
+        jQuery('#kirilkirkov-spotify-search-container .spotify-table-wrapper').hide();
+        jQuery('#kirilkirkov-spotify-search-container .spotify-search-form .ready').show();
     }
 
     function getPaginationLinks(spotify_items) {
@@ -163,20 +163,20 @@ function spotifySearch() {
     }
 
     function millisToMinutesAndSeconds(millis) {
-        var minutes = Math.floor(millis / 60000);
-        var seconds = ((millis % 60000) / 1000).toFixed(0);
+        let minutes = Math.floor(millis / 60000);
+        let seconds = ((millis % 60000) / 1000).toFixed(0);
         return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
     }
 
     // Create albums list
     function spotifySearchAddListAlbums(classname, spotify_items) {
         let header = classname.charAt(0).toUpperCase() + classname.slice(1);
-        var template = ' \
+        let template = ' \
         <li> \
             <h2>'+header+'</h2> \
             <ul> \
         ';
-        for (var [key, value] of Object.entries(spotify_items.items)) {
+        for (let [key, value] of Object.entries(spotify_items.items)) {
             let obj = spotify_items.items[key];
             let image = '';
             if(obj.images.length) {
@@ -184,9 +184,9 @@ function spotifySearch() {
             }
             let artists = '';
             if(obj.artists.length) {
-                var i=0;
-                var deliver = '';
-                for (var [key, value] of Object.entries(obj.artists)) {
+                let i=0;
+                let deliver = '';
+                for (let [key, value] of Object.entries(obj.artists)) {
                     if(i > 0) {
                         deliver = ', ';
                     }
@@ -216,12 +216,12 @@ function spotifySearch() {
 
     function spotifySearchAddListArtists(classname, spotify_items) {
         let header = classname.charAt(0).toUpperCase() + classname.slice(1);
-        var template = ' \
+        let template = ' \
         <li> \
             <h2>'+header+'</h2> \
             <ul> \
         ';
-        for (var [key, value] of Object.entries(spotify_items.items)) {
+        for (let [key, value] of Object.entries(spotify_items.items)) {
             let obj = spotify_items.items[key];
             let image = '';
             if(obj.images.length) {
@@ -229,9 +229,9 @@ function spotifySearch() {
             }
             let genres = '';
             if(obj.genres.length) {
-                var i=0;
-                var deliver = '';
-                for (var [key, value] of Object.entries(obj.genres)) {
+                let i=0;
+                let deliver = '';
+                for (let [key, value] of Object.entries(obj.genres)) {
                     if(i > 0) {
                         deliver = ', ';
                     }
@@ -258,12 +258,12 @@ function spotifySearch() {
 
     function spotifySearchAddListTracks(classname, spotify_items) {
         let header = classname.charAt(0).toUpperCase() + classname.slice(1);
-        var template = ' \
+        let template = ' \
         <li> \
             <h2>'+header+'</h2> \
             <ul> \
         ';
-        for (var [key, value] of Object.entries(spotify_items.items)) {
+        for (let [key, value] of Object.entries(spotify_items.items)) {
             let obj = spotify_items.items[key];
             let image = '';
             if(obj.album.images.length) {
@@ -271,9 +271,9 @@ function spotifySearch() {
             }
             let artists = '';
             if(obj.artists.length) {
-                var i=0;
-                var deliver = '';
-                for (var [key, value] of Object.entries(obj.artists)) {
+                let i=0;
+                let deliver = '';
+                for (let [key, value] of Object.entries(obj.artists)) {
                     if(i > 0) {
                         deliver = ', ';
                     }
@@ -302,12 +302,12 @@ function spotifySearch() {
 
     function spotifySearchAddListPlaylists(classname, spotify_items) {
         let header = classname.charAt(0).toUpperCase() + classname.slice(1);
-        var template = ' \
+        let template = ' \
         <li> \
             <h2>'+header+'</h2> \
             <ul> \
         ';
-        for (var [key, value] of Object.entries(spotify_items.items)) {
+        for (let [key, value] of Object.entries(spotify_items.items)) {
             let obj = spotify_items.items[key];
             let image = '';
             if(obj.images.length) {

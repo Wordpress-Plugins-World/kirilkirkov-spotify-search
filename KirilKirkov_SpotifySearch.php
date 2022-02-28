@@ -41,13 +41,15 @@ if(!class_exists('KirilKirkov_SpotifySearch')) {
 
 		private function constants()
 		{
-			define('SS_CACHE_GROUP', 'SpotifySearch');
-			define('SS_CACHE_TIME', 86400); // one day
+			define('KIRILKIRKOV_SPOTIFY_SEARCH_CACHE_GROUP', 'SpotifySearch');
+			define('KIRILKIRKOV_SPOTIFY_SEARCH_CACHE_TIME', 86400); // one day
 
-			define('SS_TEXT_DOMAIN', 'Spotify Search');
-			define('SS_PLUGIN_SHORTCODE', 'spotify-search');
-			define('SS_SETTING_GET_PARAM', 'kirilkirkov-spotify-search-settings');
-			define('SS_INPUTS_PREFIX', 'kirilkirkov_');
+			define('KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN', 'Spotify Search');
+			define('KIRILKIRKOV_SPOTIFY_SEARCH_PLUGIN_SHORTCODE', 'spotify-search');
+			define('KIRILKIRKOV_SPOTIFY_SEARCH_SETTING_GET_PARAM', 'kirilkirkov-spotify-search-settings');
+			define('KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX', 'kirilkirkov_spotify_search_');
+			define('KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_GROUP', 'kirilkirkov-spotify-search-update-options');
+			define('KIRILKIRKOV_SPOTIFY_SEARCH_SCRIPTS_PREFIX', 'kirilkirkov_spotify_search_');
 		}
 
 		private function init()
@@ -66,7 +68,7 @@ if(!class_exists('KirilKirkov_SpotifySearch')) {
 			add_action('wp_ajax_get_spotify_search_results', array($this, 'get_spotify_search_results') );
 			add_action('wp_ajax_nopriv_get_spotify_search_results', array($this, 'get_spotify_search_results') );
 
-			add_shortcode(SS_PLUGIN_SHORTCODE, array($this, 'load_public_form'));
+			add_shortcode(KIRILKIRKOV_SPOTIFY_SEARCH_PLUGIN_SHORTCODE, array($this, 'load_public_form'));
 		}
 
 		/**
@@ -87,12 +89,12 @@ if(!class_exists('KirilKirkov_SpotifySearch')) {
 		public function load_admin_assets($hook)
 		{
 			$current_screen = get_current_screen();
-			if (strpos($current_screen->base, SS_SETTING_GET_PARAM) === false) {
+			if (strpos($current_screen->base, KIRILKIRKOV_SPOTIFY_SEARCH_SETTING_GET_PARAM) === false) {
 				return;
 			}
-			wp_enqueue_style('boot_core_css', plugins_url('Includes/Admin/core.css', __FILE__ ));
-			wp_enqueue_style('boot_admin_css', plugins_url('Includes/Admin/admin.css', __FILE__ ));
-			wp_enqueue_script('boot_js', plugins_url('Includes/Admin/admin.js', __FILE__ ), array(), false, true);
+			wp_enqueue_style(KIRILKIRKOV_SPOTIFY_SEARCH_SCRIPTS_PREFIX.'boot_core_css', plugins_url('Includes/Admin/core.css', __FILE__ ));
+			wp_enqueue_style(KIRILKIRKOV_SPOTIFY_SEARCH_SCRIPTS_PREFIX.'boot_admin_css', plugins_url('Includes/Admin/admin.css', __FILE__ ));
+			wp_enqueue_script(KIRILKIRKOV_SPOTIFY_SEARCH_SCRIPTS_PREFIX.'boot_admin_js', plugins_url('Includes/Admin/admin.js', __FILE__ ), array(), false, true);
 		}
 
 		/**
@@ -123,13 +125,13 @@ if(!class_exists('KirilKirkov_SpotifySearch')) {
 		public function load_public_assets()
 		{
 			// load js
-			wp_enqueue_script('script-js', plugins_url( '/Includes/Public/spotify_search.js', __FILE__ ), array('jquery'), false, true);
+			wp_enqueue_script(KIRILKIRKOV_SPOTIFY_SEARCH_SCRIPTS_PREFIX.'script_public_js', plugins_url( '/Includes/Public/spotify_search.js', __FILE__ ), array('jquery'), false, true);
 			// Pass ajax_url to scripts
-			wp_localize_script('script-js', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ));
+			wp_localize_script(KIRILKIRKOV_SPOTIFY_SEARCH_SCRIPTS_PREFIX.'script_public_js', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ));
 			
 			// load styles if they are not exluded from the settings
-			if(get_option(SS_INPUTS_PREFIX.'spotify_search_default_styles') === false || trim(get_option(SS_INPUTS_PREFIX.'spotify_search_default_styles')) === '' || get_option(SS_INPUTS_PREFIX.'spotify_search_default_styles') === '1') {
-				wp_enqueue_style('spotify_search.css', plugin_dir_url( __FILE__ ) . 'Includes/Public/spotify_search.css');
+			if(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_default_styles') === false || trim(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_default_styles')) === '' || get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_default_styles') === '1') {
+				wp_enqueue_style(KIRILKIRKOV_SPOTIFY_SEARCH_SCRIPTS_PREFIX.'public_css', plugin_dir_url( __FILE__ ) . 'Includes/Public/spotify_search.css');
 			}
 		}
 
@@ -156,20 +158,20 @@ if(!class_exists('KirilKirkov_SpotifySearch')) {
 				if(!isset($_GET['code'])) {
 					// not throwable
 					$s = new SpotifyWebAPI\SpotifyWebApi();
-					$this->spotify_redirect_url = $s->getUrlForCodeToken($redirect_url, get_option(SS_INPUTS_PREFIX.'spotify_search_client_id'));
+					$this->spotify_redirect_url = $s->getUrlForCodeToken($redirect_url, get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_client_id'));
 				} else {
 					try {
 						// if user is returned from spotify with the code, lets get the real tokens and save them to database
 						$s = new SpotifyWebAPI\SpotifyWebApi([
-							'clientId' => get_option(SS_INPUTS_PREFIX.'spotify_search_client_id'),
-							'clientSecret' => get_option(SS_INPUTS_PREFIX.'spotify_search_client_secret'),
+							'clientId' => get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_client_id'),
+							'clientSecret' => get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_client_secret'),
 						]);
 						// Remove specific parameter from query string
 						$redirect_url = $this->strip_param_from_url($redirect_url, 'code');
 						$tokens = $s->getAccessTokenWithCode($_GET['code'], $redirect_url);
 						if(is_object($tokens)) {
-							update_option(SS_INPUTS_PREFIX.'spotify_search_token', $tokens->access_token);
-							update_option(SS_INPUTS_PREFIX.'spotify_search_refresh_token', $tokens->refresh_token);
+							update_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_token', $tokens->access_token);
+							update_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_refresh_token', $tokens->refresh_token);
 						}
 						wp_redirect($redirect_url);
 						exit;
@@ -181,18 +183,18 @@ if(!class_exists('KirilKirkov_SpotifySearch')) {
 				}
 			}
 
-			register_setting( 'ss-update-options', SS_INPUTS_PREFIX.'spotify_search_client_id' );
-			register_setting( 'ss-update-options', SS_INPUTS_PREFIX.'spotify_search_client_secret' );
-			register_setting( 'ss-update-options', SS_INPUTS_PREFIX.'spotify_search_search_type' );
-			register_setting( 'ss-update-options', SS_INPUTS_PREFIX.'spotify_search_limit' );
-			register_setting( 'ss-update-options', SS_INPUTS_PREFIX.'spotify_search_default_styles' );
-			register_setting( 'ss-update-options', SS_INPUTS_PREFIX.'spotify_search_styles' );
-			register_setting( 'ss-update-options', SS_INPUTS_PREFIX.'spotify_search_absolute_results' );
+			register_setting(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_GROUP, KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_client_id' );
+			register_setting(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_GROUP, KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_client_secret' );
+			register_setting(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_GROUP, KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_search_type' );
+			register_setting(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_GROUP, KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_limit' );
+			register_setting(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_GROUP, KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_default_styles' );
+			register_setting(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_GROUP, KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_styles' );
+			register_setting(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_GROUP, KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_absolute_results' );
 		}
 
 		public function setup_admin()
 		{
-			add_options_page( __( 'Spotify Search Plugin', SS_TEXT_DOMAIN ), __( 'Spotify Search', SS_TEXT_DOMAIN ), 'administrator', SS_SETTING_GET_PARAM, array( $this, 'admin_page' ) );
+			add_options_page( __( 'Spotify Search Plugin', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ), __( 'Spotify Search', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ), 'administrator', KIRILKIRKOV_SPOTIFY_SEARCH_SETTING_GET_PARAM, array( $this, 'admin_page' ) );
 		}
 
 		public function admin_page()
@@ -202,7 +204,7 @@ if(!class_exists('KirilKirkov_SpotifySearch')) {
 
 		private function get_setting_url()
 		{
-			return admin_url("options-general.php?page=" . SS_SETTING_GET_PARAM);
+			return admin_url("options-general.php?page=" . KIRILKIRKOV_SPOTIFY_SEARCH_SETTING_GET_PARAM);
 		}
 
 		/**
@@ -210,8 +212,8 @@ if(!class_exists('KirilKirkov_SpotifySearch')) {
 		 */
 		private function has_public_permission()
 		{
-			if(	get_option(SS_INPUTS_PREFIX.'spotify_search_refresh_token') 
-				&& trim(get_option(SS_INPUTS_PREFIX.'spotify_search_refresh_token')) != ''
+			if(	get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_refresh_token') 
+				&& trim(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_refresh_token')) != ''
 				&& $this->has_client_and_secret()) {
 				return true;
 			}
@@ -223,10 +225,10 @@ if(!class_exists('KirilKirkov_SpotifySearch')) {
 		 */
 		private function has_client_and_secret()
 		{
-			if(	get_option(SS_INPUTS_PREFIX.'spotify_search_client_id') 
-				&& trim(get_option(SS_INPUTS_PREFIX.'spotify_search_client_id')) != '' 
-				&& get_option(SS_INPUTS_PREFIX.'spotify_search_client_secret') 
-				&& trim(get_option(SS_INPUTS_PREFIX.'spotify_search_client_secret')) != '') {
+			if(	get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_client_id') 
+				&& trim(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_client_id')) != '' 
+				&& get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_client_secret') 
+				&& trim(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_client_secret')) != '') {
 				return true;
 			}
 			return false;
