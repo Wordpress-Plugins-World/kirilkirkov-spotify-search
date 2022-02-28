@@ -155,7 +155,7 @@
                                 <tr valign="top">
                                     <td colspan="3">
                                         <div class="flex justify-center">
-                                            <div id="shortcode" class="shortcode">
+                                            <div class="shortcode">
                                                 <span>shortcode</span>
                                                 <div>[<?php echo KIRILKIRKOV_SPOTIFY_SEARCH_PLUGIN_SHORTCODE; ?>]</div>
                                             </div>
@@ -190,7 +190,7 @@
     </form>
  
     <!-- Start Modal -->
-    <div class="ft-modal" id="spotify-search-info">
+    <div class="ft-modal spotify-search-info">
         <div class="ft-modal-content">
             <div class="ft-modal-header">
                 <div class="header">
@@ -198,11 +198,11 @@
                 </div>
             </div>	
             <div class="ft-modal-body">
-                <p id="info-box"></p>
+                <p class="info-box"></p>
                 <hr>			
             </div>
             <div class="ft-modal-footer">
-                <a class="ft-modal-close" onclick="closeModal()" href="#">[&#10006;] <?php _e( 'Close Modal', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></a>
+                <a class="ft-modal-close" href="javascript:;">[&#10006;] <?php _e( 'Close Modal', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></a>
             </div>
         </div>
     </div>
