@@ -142,7 +142,7 @@ if(!class_exists('KirilKirkov_SpotifySearch')) {
 		public function admin_init()
 		{
 			if (!is_admin()) {
-				wp_die( 'This code is for admin area only' );
+				wp_die( __('This code is for admin area only', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN) );
 			}
 
 			$this->spotify_redirect_url = null;
