@@ -7,50 +7,49 @@
         <div class="header p-4 flex items-center space-between">
             <div class="flex items-center">
                 <svg class="mr-4" xmlns="http://www.w3.org/2000/svg" height="40px" width="40px" version="1.1" viewBox="0 0 168 168"><path fill="#1ED760" d="m83.996 0.277c-46.249 0-83.743 37.493-83.743 83.742 0 46.251 37.494 83.741 83.743 83.741 46.254 0 83.744-37.49 83.744-83.741 0-46.246-37.49-83.738-83.745-83.738l0.001-0.004zm38.404 120.78c-1.5 2.46-4.72 3.24-7.18 1.73-19.662-12.01-44.414-14.73-73.564-8.07-2.809 0.64-5.609-1.12-6.249-3.93-0.643-2.81 1.11-5.61 3.926-6.25 31.9-7.291 59.263-4.15 81.337 9.34 2.46 1.51 3.24 4.72 1.73 7.18zm10.25-22.805c-1.89 3.075-5.91 4.045-8.98 2.155-22.51-13.839-56.823-17.846-83.448-9.764-3.453 1.043-7.1-0.903-8.148-4.35-1.04-3.453 0.907-7.093 4.354-8.143 30.413-9.228 68.222-4.758 94.072 11.127 3.07 1.89 4.04 5.91 2.15 8.976v-0.001zm0.88-23.744c-26.99-16.031-71.52-17.505-97.289-9.684-4.138 1.255-8.514-1.081-9.768-5.219-1.254-4.14 1.08-8.513 5.221-9.771 29.581-8.98 78.756-7.245 109.83 11.202 3.73 2.209 4.95 7.016 2.74 10.733-2.2 3.722-7.02 4.949-10.73 2.739z"/></svg>
-                <h2>Spotify Search — <?php _e( 'Page: Settings', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ) ?></h2>    
+                <h2><?php esc_html_e('Spotify Search'); ?> — <?php esc_html_e( 'Page: Settings', 'kirilkirkov-spotify-search' ) ?></h2>    
             </div>
             
-            <button type="submit" class="button-primary"><?php _e( 'Save' ) ?></button>
+            <button type="submit" class="button-primary"><?php esc_html_e( 'Save' ) ?></button>
         </div>
     
         <div class="flex flex-wrap">
             <div class="w-full md:w-3/4">
                 <div class="section-header p-4">
-                    <strong><?php _e( 'Spotify Search', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ) ?></strong>
+                    <strong><?php esc_html_e( 'Spotify Search', 'kirilkirkov-spotify-search' ) ?></strong>
                     <p>
-                        <?php _e('
+                        <?php esc_html_e('
                         Spotify Search plugin provides a way to find any Track, Album, Playlist or Artist in 
                         spotify.com throught their API. Spotify is one of the largest music streaming service 
                         providers with over 406 million monthly active users, including 180 million paying 
                         subscribers, as of December 2021.
-                        <br>
                         Enjoy!
-                        ', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ) ?>
+                        ', 'kirilkirkov-spotify-search' ) ?>
                     </p>
                 </div>
 
                 <div class="section-body">
                     <div class="p-4">
                         <?php if(is_string($this->spotify_api_error))  { ?>
-                            <p class="alert alert-danger"><strong><?php _e( 'Spotify API Error!', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></strong> <?php echo $this->spotify_api_error; ?></p>
+                            <p class="alert alert-danger"><strong><?php esc_html_e( 'Spotify API Error!', 'kirilkirkov-spotify-search' ); ?></strong> <?php echo $this->spotify_api_error; ?></p>
                         <?php } ?>
                         <table class="form-table">
                             <tr valign="top">
                                 <th scope="row" class="align-middle">
                                     <div class="th-div">
-                                        <span class="mr-5"><?php _e( 'Spotify API Credentials', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></span>
-                                        <a class="show-info" data-info="<?php _e( 'To get your spotify API keys go to <a href=\'https://developer.spotify.com/dashboard\' target=\'_blank\'>https://developer.spotify.com</a> and register yours application. <br> In the application overview you will find the client id and secret id, copy and paste them here. <br> Click Edit Settings in your app and in Redirect URIs enter <b>' . $this->settings_url . '</b> <br> Thats It!', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ) ?>" href="javascript:;">
+                                        <span class="mr-5"><?php esc_html_e( 'Spotify API Credentials', 'kirilkirkov-spotify-search' ); ?></span>
+                                        <a class="show-info" data-info="<?php esc_attr_e( 'To get your spotify API keys go to <a href=\'https://developer.spotify.com/dashboard\' target=\'_blank\'>https://developer.spotify.com</a> and register yours application. <br> In the application overview you will find the client id and secret id, copy and paste them here. <br> Click Edit Settings in your app and in Redirect URIs enter <b>' . $this->settings_url . '</b> <br> Thats It!', 'kirilkirkov-spotify-search' ) ?>" href="javascript:;">
                                             <?php echo $help_svg; ?>
                                         </a>
                                     </div>
                                 </th>
                                 <td>
-                                    <label><?php _e( 'Client ID', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></label>
-                                    <input type="text" name="<?php echo KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX; ?>spotify_search_client_id" value="<?php echo get_option( KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_client_id' ); ?>" />
+                                    <label><?php esc_html_e( 'Client ID', 'kirilkirkov-spotify-search' ); ?></label>
+                                    <input type="text" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_client_id" value="<?php echo get_option( $Config::INPUTS_PREFIX.'spotify_search_client_id' ); ?>" />
                                 </td>
                                 <td>
-                                    <label><?php _e( 'Client Secret', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></label>
-                                    <input type="text" name="<?php echo KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX; ?>spotify_search_client_secret" value="<?php echo get_option( KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_client_secret' ); ?>" />
+                                    <label><?php esc_html_e( 'Client Secret', 'kirilkirkov-spotify-search' ); ?></label>
+                                    <input type="text" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_client_secret" value="<?php echo get_option( $Config::INPUTS_PREFIX.'spotify_search_client_secret' ); ?>" />
                                 </td>
                             </tr>
                             
@@ -59,21 +58,21 @@
                             <tr>
                                 <td colspan="3" class="p-0">
                                     <div>
-                                        <?php if(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_refresh_token') && trim(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_refresh_token')) != '') { ?>
+                                        <?php if(get_option($Config::INPUTS_PREFIX.'spotify_search_refresh_token') && trim(get_option($Config::INPUTS_PREFIX.'spotify_search_refresh_token')) != '') { ?>
                                             <div class="flex justify-center mb-5">
-                                                <p class="alert alert-success"><strong><?php _e( 'Congratulations!', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></strong> <?php _e( 'You are ready, you has access tokens.', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></p>
+                                                <p class="alert alert-success"><strong><?php esc_html_e( 'Congratulations!', 'kirilkirkov-spotify-search' ); ?></strong> <?php esc_html_e( 'You are ready, you has access tokens.', 'kirilkirkov-spotify-search' ); ?></p>
                                             </div>
                                         <?php } else { ?>
                                             <div class="flex justify-center mb-5">
-                                                <p class="alert alert-info"><strong><?php _e( 'Mostly finished!', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></strong> <?php _e( 'Click the button "Get token" to generate tokens.', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></p>
+                                                <p class="alert alert-info"><strong><?php esc_html_e( 'Mostly finished!', 'kirilkirkov-spotify-search' ); ?></strong> <?php esc_html_e( 'Click the button "Get token" to generate tokens.', 'kirilkirkov-spotify-search' ); ?></p>
                                             </div>
                                         <?php } ?>
                                         <div class="flex justify-center p-4">
-                                            <a class="default-btn" href="<?php echo $this->spotify_redirect_url; ?>">
-                                                <?php if(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_refresh_token') && trim(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_refresh_token')) != '') { ?>
-                                                    <?php _e( 'Get New Tokens', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?>
+                                            <a class="default-btn" href="<?php esc_attr_e($this->spotify_redirect_url); ?>">
+                                                <?php if(get_option($Config::INPUTS_PREFIX.'spotify_search_refresh_token') && trim(get_option($Config::INPUTS_PREFIX.'spotify_search_refresh_token')) != '') { ?>
+                                                    <?php esc_html_e( 'Get New Tokens', 'kirilkirkov-spotify-search' ); ?>
                                                 <?php } else { ?>
-                                                    <?php _e( 'Get Token', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?>
+                                                    <?php esc_html_e( 'Get Token', 'kirilkirkov-spotify-search' ); ?>
                                                 <?php } ?>
                                             </a>
                                         </div>
@@ -88,67 +87,67 @@
                                 <tr valign="top">
                                     <th scope="row" class="align-middle">
                                         <div class="th-div">
-                                            <span class="mr-5"><?php _e( 'Search type', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></span>
-                                            <a class="show-info" data-info="<?php _e( 'Which type of results wants to search, eg. Artists, Tracks, Playlists or Albums. <br> They should be separated with comma. <br> Example for all types: <b>track,artist,album,playlist</b><br>Empty field will search in all types', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?>" href="javascript:;">
+                                            <span class="mr-5"><?php esc_html_e( 'Search type', 'kirilkirkov-spotify-search' ); ?></span>
+                                            <a class="show-info" data-info="<?php esc_attr_e( 'Which type of results wants to search, eg. Artists, Tracks, Playlists or Albums. <br> They should be separated with comma. <br> Example for all types: <b>track,artist,album,playlist</b><br>Empty field will search in all types', 'kirilkirkov-spotify-search' ); ?>" href="javascript:;">
                                                 <?php echo $help_svg; ?>
                                             </a>
                                         </div>
                                     </th>
                                     <td colspan="2">
-                                        <label><?php _e( 'Assets', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></label>
-                                        <input type="text" name="<?php echo KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX; ?>spotify_search_search_type" placeholder="track,artist,album,playlist" value="<?php echo get_option( KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_search_type' ); ?>" />
+                                        <label><?php esc_html_e( 'Assets', 'kirilkirkov-spotify-search' ); ?></label>
+                                        <input type="text" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_search_type" placeholder="<?php esc_attr_e('track,artist,album,playlist') ?>" value="<?php get_option( $Config::INPUTS_PREFIX.'spotify_search_search_type' ); ?>" />
                                     </td>
                                 </tr>
                                 <!-- Results limit -->
                                 <tr valign="top">
                                     <th scope="row" class="align-middle">
                                         <div class="th-div">
-                                            <span class="mr-5"><?php _e( 'Results limit', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></span>
-                                            <a class="show-info" data-info="<?php _e( 'Count of the results which wants to show<br>Results limit is per asset, so if you search in albums and tracks you will get 4 results total.<br>Results limit can not me more that 20 (this is Spotify restriction per page)', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?>" href="javascript:;">
+                                            <span class="mr-5"><?php esc_html_e( 'Results limit', 'kirilkirkov-spotify-search' ); ?></span>
+                                            <a class="show-info" data-info="<?php esc_attr_e( 'Count of the results which wants to show<br>Results limit is per asset, so if you search in albums and tracks you will get 4 results total.<br>Results limit can not me more that 20 (this is Spotify restriction per page)', 'kirilkirkov-spotify-search' ); ?>" href="javascript:;">
                                                 <?php echo $help_svg; ?>
                                             </a>
                                         </div>
                                     </th>
                                     <td colspan="2">
-                                        <label><?php _e( 'Count', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></label>
-                                        <input type="number" max="20" name="<?php echo KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX; ?>spotify_search_limit" placeholder="20" value="<?php echo get_option( KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_limit' ); ?>" />
+                                        <label><?php esc_html_e( 'Count', 'kirilkirkov-spotify-search' ); ?></label>
+                                        <input type="number" max="20" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_limit" placeholder="20" value="<?php echo get_option( $Config::INPUTS_PREFIX.'spotify_search_limit' ); ?>" />
                                     </td>
                                 </tr>
                                 <!-- Styles -->
                                 <tr valign="top">
                                     <th scope="row" class="align-middle">
                                         <div class="th-div">
-                                            <span class="mr-5"><?php _e( 'Styles', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></span>
-                                            <a class="show-info" data-info="<?php _e( 'Here you can define you own styles. <br>You can exclude all default styles and add your own or to modify the existing<br>Keep in mine that these styles can override another tags in the website! You should use the #spotify-search-container wrapper to prevent override.<br>  Absolute positioned results means that results will not push down the elements of your page.', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?>" href="javascript:;">
+                                            <span class="mr-5"><?php esc_html_e( 'Styles', 'kirilkirkov-spotify-search' ); ?></span>
+                                            <a class="show-info" data-info="<?php esc_attr_e( 'Here you can define you own styles. <br>You can exclude all default styles and add your own or to modify the existing<br>Keep in mine that these styles can override another tags in the website! You should use the #spotify-search-container wrapper to prevent override.<br>  Absolute positioned results means that results will not push down the elements of your page.', 'kirilkirkov-spotify-search' ); ?>" href="javascript:;">
                                                 <?php echo $help_svg; ?>
                                             </a>
                                         </div>
                                     </th>
                                     <td>
                                         <label>
-                                            <input type="hidden" name="<?php echo KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX; ?>spotify_search_default_styles" value="0">
-                                            <input type="checkbox" class="spotify_search_default_styles" name="<?php echo KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX; ?>spotify_search_default_styles" value="1" <?php echo get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_default_styles') === false || trim(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_default_styles')) === '' || get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_default_styles') === '1' ? 'checked' : ''; ?> />
-                                            <?php _e( 'Default styles', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?>
+                                            <input type="hidden" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_default_styles" value="0">
+                                            <input type="checkbox" class="spotify_search_default_styles" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_default_styles" value="1" <?php echo get_option($Config::INPUTS_PREFIX.'spotify_search_default_styles') === false || trim(get_option($Config::INPUTS_PREFIX.'spotify_search_default_styles')) === '' || get_option($Config::INPUTS_PREFIX.'spotify_search_default_styles') === '1' ? 'checked' : ''; ?> />
+                                            <?php esc_html_e( 'Default styles', 'kirilkirkov-spotify-search' ); ?>
                                         </label>
 
                                         <div>
                                             <label>
-                                                <input type="hidden" name="<?php echo KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX; ?>spotify_search_absolute_results" value="0">
-                                                <input type="checkbox" class="spotify_search_default_styles_features" name="<?php echo KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX; ?>spotify_search_absolute_results" value="1" <?php echo get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_absolute_results') !== false && trim(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_absolute_results')) !== '' && get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_absolute_results') === '1' ? 'checked' : ''; ?> />
-                                                <?php _e( 'Absolute positioned results', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?>
+                                                <input type="hidden" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_absolute_results" value="0">
+                                                <input type="checkbox" class="spotify_search_default_styles_features" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_absolute_results" value="1" <?php echo get_option($Config::INPUTS_PREFIX.'spotify_search_absolute_results') !== false && trim(get_option($Config::INPUTS_PREFIX.'spotify_search_absolute_results')) !== '' && get_option($Config::INPUTS_PREFIX.'spotify_search_absolute_results') === '1' ? 'checked' : ''; ?> />
+                                                <?php esc_html_e( 'Absolute positioned results', 'kirilkirkov-spotify-search' ); ?>
                                             </label>
                                         </div>
                                     </td>
                                     <td>
                                         <div>
                                             <label>
-                                                <?php _e( 'My styles', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?>
-                                                <a class="show-info" data-info="<?php _e( 'Write only css without &lt;style&gt;&lt;/style&gt; tags', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?>" href="javascript:;">
+                                                <?php esc_html_e( 'My styles', 'kirilkirkov-spotify-search' ); ?>
+                                                <a class="show-info" data-info="<?php esc_attr_e( 'Write only css without &lt;style&gt;&lt;/style&gt; tags', 'kirilkirkov-spotify-search' ); ?>" href="javascript:;">
                                                     <?php echo $help_svg; ?>
                                                 </a>
                                             </label>
                                         </div>
-                                        <textarea name="<?php echo KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX; ?>spotify_search_styles"><?php echo get_option( KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_styles' ); ?></textarea>
+                                        <textarea name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_styles"><?php echo get_option( $Config::INPUTS_PREFIX.'spotify_search_styles' ); ?></textarea>
                                     </td>
                                 </tr>
                                 <!-- Shortcode -->
@@ -156,10 +155,10 @@
                                     <td colspan="3">
                                         <div class="flex justify-center">
                                             <div class="shortcode">
-                                                <span>shortcode</span>
-                                                <div>[<?php echo KIRILKIRKOV_SPOTIFY_SEARCH_PLUGIN_SHORTCODE; ?>]</div>
+                                                <span><?php esc_html_e('shortcode'); ?></span>
+                                                <div>[<?php echo esc_attr_e($Config::SHORTCODE); ?>]</div>
                                             </div>
-                                            <a class="show-info ml-4" data-info="<?php _e( 'Copy and Paste this shortcode to any page or post where wants to show the spotify search', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?>" href="javascript:;">
+                                            <a class="show-info ml-4" data-info="<?php esc_attr_e( 'Copy and Paste this shortcode to any page or post where wants to show the spotify search', 'kirilkirkov-spotify-search' ); ?>" href="javascript:;">
                                                 <?php echo $help_svg; ?>
                                             </a>
                                         </div>
@@ -168,12 +167,12 @@
                             <?php } ?>
 
                             <input type="hidden" name="action" value="update" />
-                            <input type="hidden" name="page_options" value="<?php echo KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX; ?>_primary_setting" />
+                            <input type="hidden" name="page_options" value="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>_primary_setting" />
 
-                            <?php settings_fields(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_GROUP); ?>
+                            <?php settings_fields($Config::INPUT_GROUP); ?>
                         </table>
                         <div class="flex justify-end">
-                            <button type="submit" class="button-primary"><?php _e( 'Save' ) ?></button>
+                            <button type="submit" class="button-primary"><?php esc_html_e( 'Save' ) ?></button>
                         </div>
                     </div>
                 </div>
@@ -182,7 +181,7 @@
                 <div class="p-4">
                     <div class="ad-box p-4 flex flex-wrap items-center justify-between">
                         <img src="<?php echo plugins_url('GitHub-Mark-64px.png', __FILE__ ); ?>" width="30px" height="30px" alt="GitHub">
-                        <a href="https://github.com/Wordpress-Plugins-World" class="accent-button" target="_blank"><?php _e( 'Find Us', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></a>
+                        <a href="https://github.com/Wordpress-Plugins-World" class="accent-button" target="_blank"><?php esc_html_e( 'Find Us', 'kirilkirkov-spotify-search' ); ?></a>
                     </div>
                 </div>
             </div>
@@ -194,7 +193,7 @@
         <div class="ft-modal-content">
             <div class="ft-modal-header">
                 <div class="header">
-                    <h3 class="text-center"><?php _e( 'Helpful information', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></h3>
+                    <h3 class="text-center"><?php esc_html_e( 'Helpful information', 'kirilkirkov-spotify-search' ); ?></h3>
                 </div>
             </div>	
             <div class="ft-modal-body">
@@ -202,7 +201,7 @@
                 <hr>			
             </div>
             <div class="ft-modal-footer">
-                <a class="ft-modal-close" href="javascript:;">[&#10006;] <?php _e( 'Close Modal', KIRILKIRKOV_SPOTIFY_SEARCH_TEXT_DOMAIN ); ?></a>
+                <a class="ft-modal-close" href="javascript:;">[&#10006;] <?php esc_html_e( 'Close Modal', 'kirilkirkov-spotify-search' ); ?></a>
             </div>
         </div>
     </div>

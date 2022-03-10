@@ -1,7 +1,7 @@
 <div id="kirilkirkov-spotify-search-container">
   <form class="spotify-search-form" action="" onsubmit="return false">
     <div class="inputs">
-        <input type="text" placeholder="Arists, songs, or playlists" name="spotify_search_input" value="">
+        <input type="text" placeholder="<?php esc_attr_e('Arists, songs, or playlists'); ?>" name="spotify_search_input" value="">
     </div>
     <button type="submit">
         <span class="ready">
@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<?php if(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_absolute_results') !== false && trim(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_absolute_results')) != '' && get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_absolute_results') === '1') { ?>
+<?php if(get_option($Config::INPUTS_PREFIX.'spotify_search_absolute_results') !== false && trim(get_option($Config::INPUTS_PREFIX.'spotify_search_absolute_results')) != '' && get_option($Config::INPUTS_PREFIX.'spotify_search_absolute_results') === '1') { ?>
 <style>
 #kirilkirkov-spotify-search-container {
   position: relative;
@@ -36,8 +36,8 @@
 </style>
 <?php } ?>
 
-<?php if(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_styles') && trim(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_styles')) != '') { ?>
+<?php if(get_option($Config::INPUTS_PREFIX.'spotify_search_styles') && trim(get_option($Config::INPUTS_PREFIX.'spotify_search_styles')) != '') { ?>
 <style>
-  <?php echo get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_styles'); ?>
+  <?php echo get_option($Config::INPUTS_PREFIX.'spotify_search_styles'); ?>
 </style>
 <?php } ?>

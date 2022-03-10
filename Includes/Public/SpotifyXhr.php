@@ -1,10 +1,18 @@
 <?php
 
+namespace KirilKirkov;
+
+if(!class_exists('\KirilKirkov\SpotifySearch\Config')) {
+	require '../Admin/Classes/Config.php';
+}
+
+use KirilKirkov\SpotifySearch\Config;
+
 /**
  * @author Kiril Kirkov
  * https://github.com/kirilkirkov
  */
-class KirilKirkov_SpotifyXhr
+class SpotifyXhr
 {
     private $spotifyWebApi;
     private $search_type = 'track,artist,album,playlist'; // More info about the search types - https://github.com/kirilkirkov/Spotify-WebApi-PHP-SDK/wiki/Service-Search
@@ -19,15 +27,15 @@ class KirilKirkov_SpotifyXhr
      */
     private function initSpotify()
     {
-        if(!get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_refresh_token')) {
+        if(!get_option(Config::INPUTS_PREFIX.'spotify_search_refresh_token')) {
             return [];
         }
 
-        $this->spotifyWebApi = new SpotifyWebAPI\SpotifyWebApi([
-            'clientId' => get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_client_id'),
-            'clientSecret' => get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_client_secret'),
-            'accessToken' => get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_token'),
-            'refreshToken' => get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_refresh_token'),
+        $this->spotifyWebApi = new \SpotifyWebAPI\SpotifyWebApi([
+            'clientId' => get_option(Config::INPUTS_PREFIX.'spotify_search_client_id'),
+            'clientSecret' => get_option(Config::INPUTS_PREFIX.'spotify_search_client_secret'),
+            'accessToken' => get_option(Config::INPUTS_PREFIX.'spotify_search_token'),
+            'refreshToken' => get_option(Config::INPUTS_PREFIX.'spotify_search_refresh_token'),
         ]);
         $this->spotifyWebApi->returnNewTokenIfIsExpired(true);
 
@@ -41,13 +49,13 @@ class KirilKirkov_SpotifyXhr
      */
     private function getSearchType()
     {
-        if(!get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_search_type') || trim(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_search_type')) === '') {
+        if(!get_option(Config::INPUTS_PREFIX.'spotify_search_search_type') || trim(get_option(Config::INPUTS_PREFIX.'spotify_search_search_type')) === '') {
             return $this->search_type;
         }
 
         $search_types_ = explode(',', $this->search_type);
         
-        $search_types = explode(',', get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_search_type'));
+        $search_types = explode(',', get_option(Config::INPUTS_PREFIX.'spotify_search_search_type'));
         if(count($search_types)) {
             $stypes = [];
             foreach($search_types as $st) {
@@ -76,8 +84,8 @@ class KirilKirkov_SpotifyXhr
             return [];
         }
 
-        if(get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_limit') && (int)get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_limit') > 0) {
-            $limit = (int)get_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_limit');
+        if(get_option(Config::INPUTS_PREFIX.'spotify_search_limit') && (int)get_option(Config::INPUTS_PREFIX.'spotify_search_limit') > 0) {
+            $limit = (int)get_option(Config::INPUTS_PREFIX.'spotify_search_limit');
             if($limit > 20) {
                 $limit = 20;
             }
@@ -89,21 +97,21 @@ class KirilKirkov_SpotifyXhr
         }
 
         // get cache
-        $response = wp_cache_get($this->getCacheKey($post, $limit), KIRILKIRKOV_SPOTIFY_SEARCH_CACHE_GROUP);
+        $response = wp_cache_get($this->getCacheKey($post, $limit), Config::SEARCH_CACHE_GROUP);
         if($response === false) {
             $response = $this->spotifyWebApi->api()->provider(
                 \SpotifyWebAPI\SpotifyServices::search()::search(trim($post['spotify_search_input']), $this->getSearchType())
             )->getResult();
             // if token expired, new token is returned, update and call again
             if(property_exists($response, 'access_token')) {
-                update_option(KIRILKIRKOV_SPOTIFY_SEARCH_INPUTS_PREFIX.'spotify_search_token', $response->access_token);
+                update_option(Config::INPUTS_PREFIX.'spotify_search_token', $response->access_token);
                 // update token
                 $this->initSpotify();
                 return $this->getResults($post);
             }
 
             // set cache
-            wp_cache_set($this->getCacheKey($post, $limit), $response, KIRILKIRKOV_SPOTIFY_SEARCH_CACHE_GROUP, KIRILKIRKOV_SPOTIFY_SEARCH_CACHE_TIME);
+            wp_cache_set($this->getCacheKey($post, $limit), $response, Config::SEARCH_CACHE_GROUP, Config::SEARCH_CACHE_TIME);
         }
 
         return $response;
