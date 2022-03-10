@@ -1,8 +1,10 @@
-jQuery(document).ready(function() {
+(function($) {
 
-	kirilkirkov_SpotifySearch_init();
+	"use strict";
+	
+	kirilkirkovSpotifySearchInit();
 
-	function kirilkirkov_SpotifySearch_init() {
+	function kirilkirkovSpotifySearchInit() {
 		const info_btns = document.querySelectorAll('.show-info');
 		let info_box = document.getElementsByClassName('spotify-search-info')[0];
 
@@ -50,4 +52,4 @@ jQuery(document).ready(function() {
 			}
 		});
 	}
-});
+})(jQuery);
