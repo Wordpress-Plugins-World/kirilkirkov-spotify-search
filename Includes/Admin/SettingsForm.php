@@ -178,12 +178,22 @@
                 </div>
             </div>
             <div class="w-full md:w-1/4 ad-col">
+                
                 <div class="p-4">
-                    <div class="ad-box p-4 flex flex-wrap items-center justify-between">
+                    <div class="ad-box p-4 mb-4 flex flex-wrap items-center justify-between">
                         <img src="<?php echo plugins_url('GitHub-Mark-64px.png', __FILE__ ); ?>" width="30px" height="30px" alt="GitHub">
                         <a href="https://github.com/Wordpress-Plugins-World" class="accent-button" target="_blank"><?php esc_html_e( 'Find Us', 'kirilkirkov-spotify-search' ); ?></a>
                     </div>
+
+
+                    <div class="ad-box p-4 flex flex-wrap items-center justify-between">
+                        <p class="m-0 mb-4 text-center"><?php esc_html_e( 'Get Powerful WordPress Invoices Generator', 'kirilkirkov-spotify-search' ); ?></p>
+                        <a href="https://codecanyon.net/item/wp-invoices-pdf-electronic-invoicing-system/36891583" class="w-full" target="_blank">
+                            <img class="w-full" src="<?php echo plugins_url('Assets/Img/274x300.png', __FILE__ ); ?>" alt="<?php echo esc_attr( 'WordPress Invoices' ) ?>" />
+                        </a>
+                    </div>
                 </div>
+
             </div>
         </div>
     </form>

@@ -18,6 +18,12 @@
     height: 40px;
 }
 
+#kirilkirkov .ad-box {
+    background-color: #fff;
+    border: 1px solid #d9d8d8;
+    border-radius: 10px;
+}
+
 #kirilkirkov label {
     font-size: 12px;
     margin-bottom: 5px;
@@ -57,12 +63,6 @@
     transition: 0.3s;
 }
 #kirilkirkov *:hover {opacity: 1}
-
-#kirilkirkov .ad-box {
-    background-color: #fff;
-    border: 1px solid #d9d8d8;
-    border-radius: 10px;
-}
 
 #kirilkirkov .ad-col {
     background-color: #f9f9f9;
