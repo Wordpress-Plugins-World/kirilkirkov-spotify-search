@@ -1,10 +1,13 @@
 <?php
+
 /*
-Plugin Name: Spotify Search
-Description: This plugin search in Spotify for tracks, albums, playlists and artists.
-Version: 1.0
-Author: Kiril Kirkov
-Author URI: https://github.com/kirilkirkov/
+ Plugin Name: KirilKirkov Spotify Search
+ Description: This plugin search in Spotify for tracks, albums, playlists and artists.
+ Version: 1.0
+ Author: Kiril Kirkov
+ Author URI: https://github.com/kirilkirkov/
+ License: GPLv2 or later
+ Text Domain: kirilkirkov-spotify-search
 */
 
 if(!class_exists('SpotifyWebAPI\SpotifyWebApi')) {
