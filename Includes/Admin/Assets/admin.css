@@ -24,6 +24,13 @@
     border-radius: 10px;
 }
 
+#kirilkirkov .dashicons-spotify {
+    font-size: 42px;
+    width: 40px;
+    height: 40px;
+    color:#12c74c;
+}
+
 #kirilkirkov label {
     font-size: 12px;
     margin-bottom: 5px;
