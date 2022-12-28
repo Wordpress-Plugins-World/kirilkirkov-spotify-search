@@ -124,18 +124,31 @@
                                         </div>
                                     </th>
                                     <td>
-                                        <label>
-                                            <input type="hidden" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_default_styles" value="0">
-                                            <input type="checkbox" class="spotify_search_default_styles" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_default_styles" value="1" <?php echo get_option($Config::INPUTS_PREFIX.'spotify_search_default_styles') === false || trim(get_option($Config::INPUTS_PREFIX.'spotify_search_default_styles')) === '' || get_option($Config::INPUTS_PREFIX.'spotify_search_default_styles') === '1' ? 'checked' : ''; ?> />
-                                            <?php esc_html_e( 'Default styles', 'kirilkirkov-spotify-search' ); ?>
-                                        </label>
+                                        <div class="mb-4">
+                                            <label>
+                                                <input type="hidden" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_default_styles" value="0">
+                                                <input type="checkbox" class="spotify_search_default_styles" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_default_styles" value="1" <?php echo get_option($Config::INPUTS_PREFIX.'spotify_search_default_styles') === false || trim(get_option($Config::INPUTS_PREFIX.'spotify_search_default_styles')) === '' || get_option($Config::INPUTS_PREFIX.'spotify_search_default_styles') === '1' ? 'checked' : ''; ?> />
+                                                <?php esc_html_e( 'Default styles', 'kirilkirkov-spotify-search' ); ?>
+                                            </label>
+                                        </div>
 
-                                        <div>
+                                        <div class="mb-4">
                                             <label>
                                                 <input type="hidden" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_absolute_results" value="0">
                                                 <input type="checkbox" class="spotify_search_default_styles_features" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_absolute_results" value="1" <?php echo get_option($Config::INPUTS_PREFIX.'spotify_search_absolute_results') !== false && trim(get_option($Config::INPUTS_PREFIX.'spotify_search_absolute_results')) !== '' && get_option($Config::INPUTS_PREFIX.'spotify_search_absolute_results') === '1' ? 'checked' : ''; ?> />
                                                 <?php esc_html_e( 'Absolute positioned results', 'kirilkirkov-spotify-search' ); ?>
                                             </label>
+                                        </div>
+
+                                        <div>
+                                            <label>
+                                                <input type="hidden" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_show_on_tunedex" value="0">
+                                                <input type="checkbox" class="spotify_search_show_on_tunedex" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_show_on_tunedex" value="1" <?php echo get_option($Config::INPUTS_PREFIX.'spotify_search_show_on_tunedex') !== false && get_option($Config::INPUTS_PREFIX.'spotify_search_show_on_tunedex') === '1' ? 'checked' : ''; ?> />
+                                                <?php esc_html_e( 'Open results on Tunedex.RouteNote.com', 'kirilkirkov-spotify-search' ); ?>
+                                            </label>
+                                            <a class="show-info" data-info="<?php esc_attr_e( 'If you check this checkbox found results will be opened in tunedex.routenote.com which is biggest Open Music Database. <br> Difference is that on Tunedex will show a very big collection of additional information about the artists, albums and tracks.', 'kirilkirkov-spotify-search' ); ?>" href="javascript:;">
+                                                <?php echo $help_svg; ?>
+                                            </a>
                                         </div>
                                     </td>
                                     <td>

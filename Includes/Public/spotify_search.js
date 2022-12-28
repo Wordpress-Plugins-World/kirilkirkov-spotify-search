@@ -20,6 +20,15 @@ function KirilKirkovSpotifySearch() {
 
         let results_container = jQuery('#kirilkirkov-spotify-search-container .spotify-search-results');
         let main_form = document.getElementsByClassName('spotify-search-form')[0];
+
+        let album_open_in = 'https://open.spotify.com/album/';
+        let artist_open_in = 'https://open.spotify.com/artist/';
+        let track_open_in = 'https://open.spotify.com/track/';
+        if(ajax_object.open_in_tunedex == 1) {
+            album_open_in = 'https://tunedex.routenote.com/albums/';
+            artist_open_in = 'https://tunedex.routenote.com/artists/';
+            track_open_in = 'https://tunedex.routenote.com/tracks/';    
+        }
         
         /**
         * Execute a function given a delay time - helper debounce
@@ -201,7 +210,7 @@ function KirilKirkovSpotifySearch() {
                 <li> \
                     <div class="container"> \
                         <div class="cover" style="background-image: url(\''+image+'\')"></div> \
-                        <a href="https://open.spotify.com/album/'+obj.id+'" target="_blank"> \
+                        <a href="' + album_open_in + obj.id + '" target="_blank"> \
                             '+obj.name+' \
                         </a> \
                         <span><b>Artists:</b> '+artists+'</span> \
@@ -246,7 +255,7 @@ function KirilKirkovSpotifySearch() {
                 <li> \
                     <div class="container"> \
                         <div class="cover" style="background-image: url(\''+image+'\')"></div> \
-                        <a href="https://open.spotify.com/artist/'+obj.id+'" target="_blank"> \
+                        <a href="' + artist_open_in + obj.id + '" target="_blank"> \
                             '+obj.name+' \
                         </a> \
                         <span><b>Followers:</b> '+obj.followers.total+'</span> \
@@ -288,7 +297,7 @@ function KirilKirkovSpotifySearch() {
                 <li> \
                     <div class="container"> \
                         <div class="cover" style="background-image: url(\''+image+'\')"></div> \
-                        <a href="https://open.spotify.com/track/'+obj.id+'" target="_blank"> \
+                        <a href="' + track_open_in + obj.id + '" target="_blank"> \
                             '+obj.name+' \
                         </a> \
                         <span><b>Artists:</b> '+artists+'</span> \

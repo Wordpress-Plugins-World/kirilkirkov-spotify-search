@@ -25,7 +25,8 @@ class Config
             'spotify_search_limit',
             'spotify_search_default_styles',
             'spotify_search_styles',
-            'spotify_search_absolute_results'
+            'spotify_search_absolute_results',
+            'spotify_search_show_on_tunedex'
         ],
     ];
 
