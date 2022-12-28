@@ -4,7 +4,7 @@ window.onload = function() {
         let jQuery_script = document.createElement('script');
         document.head.appendChild(jQuery_script);
         jQuery_script.type = 'text/javascript';
-        jQuery_script.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js";
+        jQuery_script.src = "/wp-includes/js/jquery/jquery.min.js";
         jQuery_script.onload = function() {
             KirilKirkovSpotifySearch();
         };
