@@ -144,9 +144,9 @@
                                             <label>
                                                 <input type="hidden" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_show_on_tunedex" value="0">
                                                 <input type="checkbox" class="spotify_search_show_on_tunedex" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_show_on_tunedex" value="1" <?php echo get_option($Config::INPUTS_PREFIX.'spotify_search_show_on_tunedex') !== false && get_option($Config::INPUTS_PREFIX.'spotify_search_show_on_tunedex') === '1' ? 'checked' : ''; ?> />
-                                                <?php esc_html_e( 'Open results on Tunedex.RouteNote.com', 'kirilkirkov-spotify-search' ); ?>
+                                                <?php esc_html_e( 'Open found results in Tunedex.RouteNote.com', 'kirilkirkov-spotify-search' ); ?>
                                             </label>
-                                            <a class="show-info" data-info="<?php esc_attr_e( 'If you check this checkbox found results will be opened in tunedex.routenote.com which is biggest Open Music Database. <br> Difference is that on Tunedex will show a very big collection of additional information about the artists, albums and tracks.', 'kirilkirkov-spotify-search' ); ?>" href="javascript:;">
+                                            <a class="show-info" data-info="<?php esc_attr_e( 'If you check this option, found results will be opened in <a href="https://tunedex.routenote.com" target="_blank">tunedex.routenote.com</a> which is biggest Open Music Database. <br> Benefit is that on Tunedex will show a very big collection of additional information about the artists, albums and tracks with <b>multiple listen and download relations</b> where they are uploaded.', 'kirilkirkov-spotify-search' ); ?>" href="javascript:;">
                                                 <?php echo $help_svg; ?>
                                             </a>
                                         </div>
