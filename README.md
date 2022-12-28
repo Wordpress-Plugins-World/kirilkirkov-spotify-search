@@ -18,6 +18,7 @@
 - Beautiful design which looks exactly like your users are in spotify
 - All type of themes compapitable
 - Open each result directly in the original spotify page
+- Open found results directly on spotify or [Tunedex RouteNote](https://tunedex.routenote.com) (biggest Open Music Database)
 
 <p>Beautiful and easy administration with help/explain for each field and feature</p>
 

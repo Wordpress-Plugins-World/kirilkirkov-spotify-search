@@ -207,7 +207,7 @@
                     </div>
 
                     <div class="ad-box p-4 flex flex-wrap items-center justify-between">
-                        <p class="m-0 mb-4 text-center"><?php esc_html_e( 'Get Powerful Project Management System', 'kirilkirkov-wp-invoices' ); ?></p>
+                        <p class="m-0 mb-4 text-center"><?php esc_html_e( 'Get Powerful Project Management Ticketing System', 'kirilkirkov-wp-invoices' ); ?></p>
                         <a href="https://codecanyon.net/item/agile-scrum-project-issue-management/36720961" class="w-full" target="_blank">
                             <img class="w-full" src="<?php echo plugins_url('/Assets/Img/banner.jpg', __FILE__ ); ?>" alt="<?php echo esc_attr( 'Agile Scrum' ) ?>" />
                         </a>
