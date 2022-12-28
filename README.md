@@ -1,6 +1,6 @@
-# Spotify WebAPI Search
+# WordPress Spotify WebAPI Search
 
-<p>Spotify Search plugin provides a way to find any Track, Album, Playlist or Artist in spotify.com throught their API. Spotify is one of the largest music streaming service providers with over 406 million monthly active users, including 180 million paying subscribers, as of December 2021.</p>
+<p>WordPress Spotify Search Plugin provides a way to find any Track, Album, Playlist or Artist in spotify.com throught their API. Spotify is one of the largest music streaming service providers with over 406 million monthly active users, including 180 million paying subscribers, as of December 2021.</p>
 
 ## Features included
 
@@ -18,13 +18,13 @@
 - Beautiful design which looks exactly like your users are in spotify
 - All type of themes compapitable
 - Open each result directly in the original spotify page
-- Open found results directly on spotify or [Tunedex RouteNote](https://tunedex.routenote.com) (biggest Open Music Database)
+- Open found results directly on Spotify or [Tunedex RouteNote](https://tunedex.routenote.com) (biggest Open Music Database with a lot of additional information)
 
-<p>Beautiful and easy administration with help/explain for each field and feature</p>
+<p>Beautiful and easy administration with help/explain for each field and feature.</p>
 
-<p>Updates and new features in future</p>
+<p>Updates and new features in future.</p>
 
-<p>Provide a way for your users to find any musical asset in the world</p>
+<p>Provide a way for your users to find any musical asset in the world.</p>
 
 ### Admin page
 
