@@ -10,7 +10,7 @@
                 <h2><?php esc_html_e('Spotify Search'); ?> — <?php esc_html_e( 'Page: Settings', 'kirilkirkov-spotify-search' ) ?></h2>    
             </div>
             
-            <button type="submit" class="button-primary"><?php esc_html_e( 'Save' ) ?></button>
+            <button type="submit" class="button-primary"><?php esc_html_e( 'Save', 'kirilkirkov-spotify-search' ) ?></button>
         </div>
     
         <div class="flex flex-wrap">
@@ -45,11 +45,11 @@
                                 </th>
                                 <td>
                                     <label><?php esc_html_e( 'Client ID', 'kirilkirkov-spotify-search' ); ?></label>
-                                    <input type="text" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_client_id" value="<?php echo get_option( $Config::INPUTS_PREFIX.'spotify_search_client_id' ); ?>" />
+                                    <input type="text" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_client_id" value="<?php echo esc_attr(get_option( $Config::INPUTS_PREFIX.'spotify_search_client_id' )); ?>" />
                                 </td>
                                 <td>
                                     <label><?php esc_html_e( 'Client Secret', 'kirilkirkov-spotify-search' ); ?></label>
-                                    <input type="text" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_client_secret" value="<?php echo get_option( $Config::INPUTS_PREFIX.'spotify_search_client_secret' ); ?>" />
+                                    <input type="text" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_client_secret" value="<?php echo esc_attr(get_option( $Config::INPUTS_PREFIX.'spotify_search_client_secret' )); ?>" />
                                 </td>
                             </tr>
                             
@@ -160,7 +160,7 @@
                                                 </a>
                                             </label>
                                         </div>
-                                        <textarea name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_styles"><?php echo get_option( $Config::INPUTS_PREFIX.'spotify_search_styles' ); ?></textarea>
+                                        <textarea name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_styles"><?php echo esc_html(get_option( $Config::INPUTS_PREFIX.'spotify_search_styles' )); ?></textarea>
                                     </td>
                                 </tr>
                                 <!-- Shortcode -->
@@ -185,7 +185,7 @@
                             <?php settings_fields($Config::INPUT_GROUP); ?>
                         </table>
                         <div class="flex justify-end">
-                            <button type="submit" class="button-primary"><?php esc_html_e( 'Save' ) ?></button>
+                            <button type="submit" class="button-primary"><?php esc_html_e( 'Save', 'kirilkirkov-spotify-search' ) ?></button>
                         </div>
                     </div>
                 </div>
