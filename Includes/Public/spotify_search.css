@@ -79,6 +79,12 @@
   padding: 0;
 }
 
+#kirilkirkov-spotify-search-container .spotify-table-wrapper ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
 #kirilkirkov-spotify-search-container .spotify-table-wrapper ul li ul {
   margin-left: -20px;
   display: flex;

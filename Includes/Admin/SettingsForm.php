@@ -95,7 +95,7 @@
                                     </th>
                                     <td colspan="2">
                                         <label><?php esc_html_e( 'Assets', 'kirilkirkov-spotify-search' ); ?></label>
-                                        <input type="text" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_search_type" placeholder="<?php esc_attr_e('track,artist,album,playlist') ?>" value="<?php get_option( $Config::INPUTS_PREFIX.'spotify_search_search_type' ); ?>" />
+                                        <input type="text" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_search_type" placeholder="<?php esc_attr_e('track,artist,album,playlist') ?>" value="<?php echo esc_attr(get_option( $Config::INPUTS_PREFIX.'spotify_search_search_type' )); ?>" />
                                     </td>
                                 </tr>
                                 <!-- Results limit -->
@@ -110,7 +110,7 @@
                                     </th>
                                     <td colspan="2">
                                         <label><?php esc_html_e( 'Count', 'kirilkirkov-spotify-search' ); ?></label>
-                                        <input type="number" max="20" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_limit" placeholder="20" value="<?php echo get_option( $Config::INPUTS_PREFIX.'spotify_search_limit' ); ?>" />
+                                        <input type="number" max="20" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_limit" placeholder="20" value="<?php echo esc_attr(get_option( $Config::INPUTS_PREFIX.'spotify_search_limit' )); ?>" />
                                     </td>
                                 </tr>
                                 <!-- Styles -->
