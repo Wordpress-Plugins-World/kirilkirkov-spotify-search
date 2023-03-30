@@ -22,9 +22,12 @@
                         Spotify Search plugin provides a way to find any Track, Album, Playlist or Artist in 
                         spotify.com throught their API. Spotify is one of the largest music streaming service 
                         providers with over 406 million monthly active users, including 180 million paying 
-                        subscribers, as of December 2021.
+                        subscribers, as of December 2021. 
                         Enjoy!
                         ', 'kirilkirkov-spotify-search' ) ?>
+                        <br>
+                        <?php esc_html_e( 'Integrated with', 'kirilkirkov-spotify-search' ); ?>
+                        <a href="https://tunedex.routenote.com/" target="_blank">Tunedex.RouteNote.com</a>
                     </p>
                 </div>
 
@@ -38,7 +41,7 @@
                                 <th scope="row" class="align-middle">
                                     <div class="th-div">
                                         <span class="mr-5"><?php esc_html_e( 'Spotify API Credentials', 'kirilkirkov-spotify-search' ); ?></span>
-                                        <a class="show-info" data-info="<?php esc_attr_e( 'To get your spotify API keys go to <a href=\'https://developer.spotify.com/dashboard\' target=\'_blank\'>https://developer.spotify.com</a> and register yours application. <br> In the application overview you will find the client id and secret id, copy and paste them here. <br> Click Edit Settings in your app and in Redirect URIs enter <b>' . $this->settings_url . '</b> <br> Thats It!', 'kirilkirkov-spotify-search' ) ?>" href="javascript:;">
+                                        <a class="show-info" data-info="<?php esc_attr_e( 'To get your spotify API keys go to <a href=\'https://developer.spotify.com/dashboard\' target=\'_blank\'>https://developer.spotify.com</a> and register yours application. <br> Click on your application, then go to Settings section and will find the client id and secret id, copy and paste them here. <br> Into the Redirect URIs section paste this url <b>' . $this->settings_url . '</b> <br> Thats It!', 'kirilkirkov-spotify-search' ) ?>" href="javascript:;">
                                             <?php echo $help_svg; ?>
                                         </a>
                                     </div>
@@ -146,7 +149,7 @@
                                                 <input type="checkbox" class="spotify_search_show_on_tunedex" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_show_on_tunedex" value="1" <?php echo get_option($Config::INPUTS_PREFIX.'spotify_search_show_on_tunedex') !== false && get_option($Config::INPUTS_PREFIX.'spotify_search_show_on_tunedex') === '1' ? 'checked' : ''; ?> />
                                                 <?php esc_html_e( 'Open found results in Tunedex.RouteNote.com', 'kirilkirkov-spotify-search' ); ?>
                                             </label>
-                                            <a class="show-info" data-info="<?php esc_attr_e( 'If you check this option, found results will be opened in <a href="https://tunedex.routenote.com" target="_blank">tunedex.routenote.com</a> which is biggest Open Music Database. <br> Benefit is that on Tunedex will show a very big collection of additional information about the artists, albums and tracks with <b>multiple listen and download relations</b> where they are uploaded.', 'kirilkirkov-spotify-search' ); ?>" href="javascript:;">
+                                            <a class="show-info" data-info="<?php esc_attr_e( 'If you check this option, found results will be opened in <a href="https://tunedex.routenote.com" target="_blank">tunedex.routenote.com</a> which is biggest Open Music Database and part of RouteNote.com. <br> Benefit is that on Tunedex will show a very big collection of additional information about the artists, albums and tracks with <b>multiple listen and download relations</b> where they are uploaded.', 'kirilkirkov-spotify-search' ); ?>" href="javascript:;">
                                                 <?php echo $help_svg; ?>
                                             </a>
                                         </div>
@@ -200,14 +203,14 @@
 
 
                     <div class="ad-box mb-4 p-4 flex flex-wrap items-center justify-between">
-                        <p class="m-0 mb-4 text-center"><?php esc_html_e( 'Get Powerful WordPress Invoices Generator', 'kirilkirkov-spotify-search' ); ?></p>
+                        <p class="m-0 mb-4 text-center"><?php esc_html_e( 'Get Powerful WordPress Invoices Generator with WooCommerce integration', 'kirilkirkov-spotify-search' ); ?></p>
                         <a href="https://codecanyon.net/item/wp-invoices-pdf-electronic-invoicing-system/36891583" class="w-full" target="_blank">
                             <img class="w-full" src="<?php echo plugins_url('Assets/Img/274x300.png', __FILE__ ); ?>" alt="<?php echo esc_attr( 'WordPress Invoices' ) ?>" />
                         </a>
                     </div>
 
                     <div class="ad-box p-4 flex flex-wrap items-center justify-between">
-                        <p class="m-0 mb-4 text-center"><?php esc_html_e( 'Get Powerful Project Management Ticketing System', 'kirilkirkov-wp-invoices' ); ?></p>
+                        <p class="m-0 mb-4 text-center"><?php esc_html_e( 'Get Powerful WordPress Project Management Ticketing System with Kanban Board', 'kirilkirkov-wp-invoices' ); ?></p>
                         <a href="https://codecanyon.net/item/agile-scrum-project-issue-management/36720961" class="w-full" target="_blank">
                             <img class="w-full" src="<?php echo plugins_url('/Assets/Img/banner.jpg', __FILE__ ); ?>" alt="<?php echo esc_attr( 'Agile Scrum' ) ?>" />
                         </a>
