@@ -257,7 +257,7 @@ class SpotifyWebApi
 
     public function provider(Array $service)
     {
-        array_walk($service, function(&$value, &$key) {
+        array_walk($service, function(&$value, $key) {
             if(method_exists($this, $key)) {
                 $this->{$key}($value);
             } else if(property_exists($this, $key)) {

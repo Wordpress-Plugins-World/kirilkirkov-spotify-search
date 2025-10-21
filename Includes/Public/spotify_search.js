@@ -139,21 +139,20 @@ function KirilKirkovSpotifySearch() {
         }
 
         function getPaginationLinks(spotify_items) {
-            let pagination_template = '<ul class="pagination"><li>';
-            let params = {};
-            if(spotify_items.previous != null) {
-                params = getParamsFromUrl(spotify_items.previous);
-                pagination_template += '<a href="javascript:;" class="spotify_search_previous_page" data-params="'+params+'"> \
+            let pagination_template = '<ul class="pagination">';
+            if (spotify_items.previous != null) {
+                const paramsPrev = getParamsFromUrl(spotify_items.previous);
+                pagination_template += '<li><a href="javascript:;" class="spotify_search_previous_page" data-params="'+paramsPrev+'"> \
                     <svg width="24px" height="24px" fill="#fff" viewBox="-78.5 0 512 512" xmlns="http://www.w3.org/2000/svg" ><title>left</title><path d="M257 64L291 98 128 262 291 426 257 460 61 262 257 64Z" /></svg> \
-                </a>';
+                </a></li>';
             }
-            if(spotify_items.next != null) {
-                params = getParamsFromUrl(spotify_items.next);
-                pagination_template += '<a href="javascript:;" class="spotify_search_next_page" data-params="'+params+'"> \
+            if (spotify_items.next != null) {
+                const paramsNext = getParamsFromUrl(spotify_items.next);
+                pagination_template += '<li><a href="javascript:;" class="spotify_search_next_page" data-params="'+paramsNext+'"> \
                     <svg width="24px" height="24px" fill="#fff" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon"><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"/></svg> \
-                </a>';
+                </a></li>';
             }
-            pagination_template += '</li></ul>';
+            pagination_template += '</ul>';
             return pagination_template;
         }
 
@@ -190,6 +189,7 @@ function KirilKirkovSpotifySearch() {
             ';
             for (let [key, value] of Object.entries(spotify_items.items)) {
                 let obj = spotify_items.items[key];
+                if(obj === null) continue;
                 let image = '';
                 if(obj.images.length) {
                     image = obj.images[0].url;
@@ -235,6 +235,7 @@ function KirilKirkovSpotifySearch() {
             ';
             for (let [key, value] of Object.entries(spotify_items.items)) {
                 let obj = spotify_items.items[key];
+                if(obj === null) continue;
                 let image = '';
                 if(obj.images.length) {
                     image = obj.images[0].url;
@@ -321,6 +322,7 @@ function KirilKirkovSpotifySearch() {
             ';
             for (let [key, value] of Object.entries(spotify_items.items)) {
                 let obj = spotify_items.items[key];
+                if(obj === null) continue;
                 let image = '';
                 if(obj.images.length) {
                     image = obj.images[0].url;

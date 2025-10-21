@@ -26,8 +26,12 @@
                         Enjoy!
                         ', 'kirilkirkov-spotify-search' ) ?>
                         <br>
+                        <br>
                         <?php esc_html_e( 'Integrated with', 'kirilkirkov-spotify-search' ); ?>
-                        <a href="https://tunedex.routenote.com/" target="_blank">Tunedex.RouteNote.com</a>
+                        <a href="https://tunedex.routenote.com/" target="_blank">tunedex.routenote.com</a>
+                        <?php esc_html_e( ', part of', 'kirilkirkov-spotify-search' ); ?>
+                        <a href="https://www.routenote.com/?ref=wordpress-kirilkirkov-spotify-search" target="_blank">RouteNote.com</a>
+                        <?php esc_html_e( ', the world’s largest music distribution company. Tunedex gives access to a vast collection of additional information about artists, albums, and tracks, including multiple links for listening and downloading where the content is available.', 'kirilkirkov-spotify-search' ); ?>
                     </p>
                 </div>
 
@@ -147,9 +151,9 @@
                                             <label>
                                                 <input type="hidden" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_show_on_tunedex" value="0">
                                                 <input type="checkbox" class="spotify_search_show_on_tunedex" name="<?php esc_attr_e($Config::INPUTS_PREFIX); ?>spotify_search_show_on_tunedex" value="1" <?php echo get_option($Config::INPUTS_PREFIX.'spotify_search_show_on_tunedex') !== false && get_option($Config::INPUTS_PREFIX.'spotify_search_show_on_tunedex') === '1' ? 'checked' : ''; ?> />
-                                                <?php esc_html_e( 'Open found results in Tunedex.RouteNote.com', 'kirilkirkov-spotify-search' ); ?>
+                                                <?php esc_html_e( 'Open found results in tunedex.routenote.com', 'kirilkirkov-spotify-search' ); ?>
                                             </label>
-                                            <a class="show-info" data-info="<?php esc_attr_e( 'If you check this option, found results will be opened in <a href="https://tunedex.routenote.com" target="_blank">tunedex.routenote.com</a> which is biggest Open Music Database and part of RouteNote.com. <br> Benefit is that on Tunedex will show a very big collection of additional information about the artists, albums and tracks with <b>multiple listen and download relations</b> where they are uploaded.', 'kirilkirkov-spotify-search' ); ?>" href="javascript:;">
+                                            <a class="show-info" data-info="<?php esc_attr_e( 'If you select this option, the results will open in <a href="https://tunedex.routenote.com" target="_blank">tunedex.routenote.com</a>, the largest Open Music Database and part of <a href="https://www.routenote.com/?ref=wordpress-kirilkirkov-spotify-search" target="_blank">RouteNote.com</a>. <br> The benefit is that Tunedex provides a large collection of additional information about artists, albums, and tracks, including multiple links for listening and downloading where the content is available.', 'kirilkirkov-spotify-search' ); ?>" href="javascript:;">
                                                 <?php echo $help_svg; ?>
                                             </a>
                                         </div>
@@ -201,6 +205,12 @@
                         <a href="https://github.com/Wordpress-Plugins-World" class="accent-button" target="_blank"><?php esc_html_e( 'Find Us', 'kirilkirkov-spotify-search' ); ?></a>
                     </div>
 
+                    <div class="ad-box mb-4 p-4 flex flex-wrap items-center justify-between">
+                        <p class="m-0 mb-4 w-full text-center"><?php esc_html_e( 'Music Distribution', 'kirilkirkov-spotify-search' ); ?></p>
+                        <a href="https://www.routenote.com/?ref=wordpress-kirilkirkov-spotify-search" class="w-full" target="_blank">
+                            <img class="w-full" src="<?php echo plugins_url('Assets/Img/routenote.jpg', __FILE__ ); ?>" alt="<?php echo esc_attr( 'WordPress Invoices' ) ?>" />
+                        </a>
+                    </div>
 
                     <div class="ad-box mb-4 p-4 flex flex-wrap items-center justify-between">
                         <p class="m-0 mb-4 text-center"><?php esc_html_e( 'Get Powerful WordPress Invoices Generator with WooCommerce integration', 'kirilkirkov-spotify-search' ); ?></p>
