@@ -1,4 +1,4 @@
-# WordPress Spotify WebAPI Search
+# Search for Spotify results in WordPress
 
 <p>WordPress Spotify Search Plugin provides a way to find any Track, Album, Playlist or Artist in spotify.com throught their API. Spotify is one of the largest music streaming service providers with over 406 million monthly active users, including 180 million paying subscribers, as of December 2021.</p>
 
